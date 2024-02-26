@@ -24,13 +24,15 @@ jobs:
         run: |
           pip install transifex-client
 
-      - name: Configurar archivo .transifexrc
+      - name: Configurar .transifexrc
         run: |
-          echo "[https://www.transifex.com]" > ~/.transifexrc
-          echo "hostname = https://app.transifex.com" >> ~/.transifexrc
-          echo "username = api" >> ~/.transifexrc
-          echo "password = ${{ secrets.TX_TOKEN }}" >> ~/.transifexrc
-          echo "rest_hostname = https://rest.api.transifex.com" >> ~/.transifexrc
+          cat << EOF > ~/.transifexrc
+          [https://www.transifex.com]
+          hostname = https://app.transifex.com
+          password = ${{ secrets.TX_TOKEN }}
+          username = api
+          token = ${{ secrets.TX_TOKEN }}
+          EOF
 
 
       - name: Descargar Traducciones
