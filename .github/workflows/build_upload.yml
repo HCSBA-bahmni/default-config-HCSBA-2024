@@ -35,8 +35,6 @@ jobs:
           echo "hostname = https://www.transifex.com" >> $HOME/.transifexrc
           echo "token = $TX_TOKEN" >> $HOME/.transifexrc
 
-
-
       - name: Download Translations from Transifex
         env:
           TX_TOKEN: ${{ secrets.TX_TOKEN }}
