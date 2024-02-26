@@ -24,6 +24,7 @@ jobs:
       - name: Set up Python and install Transifex Client
         run: |
           curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Configurar credenciales de Transifex
         env:
