@@ -24,7 +24,17 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y python3-pip
           pip install transifex-client
+
+      - name: Preparar Transifex Client
+        env:
+          TX_TOKEN: ${{ secrets.TX_TOKEN }}
+        run: |
+          # Elimina el directorio .tx si ya existe para evitar la solicitud interactiva
+          rm -rf .tx/
           
+          # Inicializa Transifex sin interacción
+          tx init --token $TX_TOKEN --no-interactive
+
       - name: Download Translations from Transifex
         env:
           TX_TOKEN: ${{ secrets.TX_TOKEN }}
