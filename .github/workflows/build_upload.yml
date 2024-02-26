@@ -20,16 +20,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # Paso agregado: Instalar CLI de Transifex y descargar traducciones
-     - name: Configurar Transifex CLI
-      run: |
-        pip install transifex-client
-        echo 'TX_TOKEN=${{ secrets.TX_TOKEN }}' >> $GITHUB_ENV
-    
-    - name: Descargar Traducciones
-      run: |
-        tx init --token $TX_TOKEN
-        tx pull -a # Descarga todas las traducciones
+      - name: Configurar Transifex CLI
+        run: |
+          pip install transifex-client
+          echo 'TX_TOKEN=${{ secrets.TX_TOKEN }}' >> $GITHUB_ENV
+
+      - name: Descargar Traducciones
+        run: |
+          tx init --token $TX_TOKEN
+          tx pull -a # Descarga todas las traducciones
 
       - name: Set env.ARTIFACT_VERSION
         run: |
@@ -91,5 +90,3 @@ jobs:
           git config user.name "${{ secrets.BAHMNI_USERNAME }}"
           git config user.email "${{ secrets.BAHMNI_EMAIL }}"
           git add .
-          git commit -m "Release of default-config-${{ env.ARTIFACT_VERSION }}"
-          git push https://${{ secrets.BAHMNI_USERNAME }}:${{ secrets.BAHMNI_PAT }}@github.com/bahmni/helm-charts.git gh-pages
