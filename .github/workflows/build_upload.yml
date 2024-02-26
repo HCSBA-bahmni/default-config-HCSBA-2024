@@ -19,14 +19,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
-
 
       # Paso agregado: Instalar CLI de Transifex y descargar traducciones
       - name: Set up Python and install Transifex Client
         run: |
           curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
-
 
       - name: Configurar credenciales de Transifex
         env:
@@ -37,31 +34,30 @@ jobs:
           echo "token = $TX_TOKEN" >> $HOME/.transifexrc
 
       - name: Download Translations from Transifex
-        env:
-          TX_TOKEN: ${{ secrets.TX_TOKEN }}
         run: |
-          tx -d pull -a 
+          tx pull -a
           # Asegúrate de mover las traducciones a la carpeta correcta aquí, por ejemplo:
           # mv translations/openmrs/* openmrs/
-          
+
       - name: Set env.ARTIFACT_VERSION
         run: |
           wget -q https://raw.githubusercontent.com/Bahmni/bahmni-infra-utils/main/setArtifactVersion.sh && chmod +x setArtifactVersion.sh
           ./setArtifactVersion.sh
+          echo "ARTIFACT_VERSION=$(cat ARTIFACT_VERSION)" >> $GITHUB_ENV
           rm setArtifactVersion.sh
-          
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
-        
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-        
+
       - name: Docker - Login
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          
+
       - name: Docker - Build and push
         uses: docker/build-push-action@v3
         with:
@@ -69,39 +65,39 @@ jobs:
           file: package/docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: hcsba/default-config-hcsba-2024:${{env.ARTIFACT_VERSION}},hcsba/default-config-hcsba-2024:latest
-          
+          tags: hcsba/default-config-hcsba-2024:${{ env.ARTIFACT_VERSION }},hcsba/default-config-hcsba-2024:latest
+
       - name: Update Version and Image Tag in Helm Chart
         run: |
           yq e --inplace '.image.tag = strenv(ARTIFACT_VERSION)' $HELM_CHART_PATH/values.yaml
           yq e --inplace '.version = strenv(ARTIFACT_VERSION)' $HELM_CHART_PATH/Chart.yaml
-          
+
       - name: Helm Lint
         run: helm lint $HELM_CHART_PATH
-        
+
       - name: Helm Package
         run: helm package $HELM_CHART_PATH
-        
-      - name: Checkout Charts Repository
-        uses: actions/checkout@v2
+
+      - uses: actions/checkout@v2
         with:
           repository: Bahmni/helm-charts
           ref: gh-pages
           path: helm-charts
           persist-credentials: false
-          
+
       - name: Copy Helm Archive
-        run: mkdir -p helm-charts/default-config/ && cp default-config-${{ env.ARTIFACT_VERSION }}.tgz helm-charts/default-config/
-        
+        run: |
+          mkdir -p helm-charts/default-config/ && cp *.tgz helm-charts/default-config/
+
       - name: Helm Index
         working-directory: helm-charts/
-        run: helm repo index --merge index.yaml --url https://bahmni.github.io/helm-charts/  .
-        
+        run: helm repo index --merge index.yaml --url https://bahmni.github.io/helm-charts/ .
+
       - name: Commit and Push Chart Repository
         working-directory: helm-charts/
         run: |
-          git config user.name ${{ secrets.BAHMNI_USERNAME}}
-          git config user.email ${{ secrets.BAHMNI_EMAIL}}
+          git config user.name "${{ secrets.BAHMNI_USERNAME }}"
+          git config user.email "${{ secrets.BAHMNI_EMAIL }}"
           git add .
           git commit -m "Release of default-config-${{ env.ARTIFACT_VERSION }}"
-          git push 'https://${{ secrets.BAHMNI_USERNAME}}:${{ secrets.BAHMNI_PAT}}@github.com/bahmni/helm-charts.git' gh-pages
+          git push https://${{ secrets.BAHMNI_USERNAME }}:${{ secrets.BAHMNI_PAT }}@github.com/bahmni/helm-charts.git gh-pages
