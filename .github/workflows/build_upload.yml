@@ -31,22 +31,17 @@ jobs:
         env:
           TX_TOKEN: ${{ secrets.TX_TOKEN }}
         run: |
-          # Crea el archivo .transifexrc en el directorio home del runner
-          cat << EOF > $HOME/.transifexrc
-          [https://www.transifex.com]
-          api_hostname = https://api.transifex.com
-          hostname = https://www.transifex.com
-          password = $TX_TOKEN
-          token = 
-          username = api
-          EOF
+          echo "[https://www.transifex.com]" > $HOME/.transifexrc
+          echo "hostname = https://www.transifex.com" >> $HOME/.transifexrc
+          echo "token = $TX_TOKEN" >> $HOME/.transifexrc
+
 
 
       - name: Download Translations from Transifex
         env:
           TX_TOKEN: ${{ secrets.TX_TOKEN }}
         run: |
-          tx pull -l es
+          tx pull -l es 
           # Asegúrate de mover las traducciones a la carpeta correcta aquí, por ejemplo:
           # mv translations/openmrs/* openmrs/
           
