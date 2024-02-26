@@ -30,7 +30,6 @@ jobs:
           echo "[https://www.transifex.com]" >> ~/.transifexrc
           echo "hostname = https://www.transifex.com" >> ~/.transifexrc
           echo "token = ${{ secrets.TX_TOKEN }}" >> ~/.transifexrc
-          echo "password = ${{ secrets.TX_TOKEN }}" >> ~/.transifexrc
           echo "username = api" >> ~/.transifexrc
 
       - name: Descargar Traducciones
