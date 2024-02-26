@@ -39,7 +39,7 @@ jobs:
         env:
           TX_TOKEN: ${{ secrets.TX_TOKEN }}
         run: |
-          tx pull -l es 
+          tx pull -a 
           # Asegúrate de mover las traducciones a la carpeta correcta aquí, por ejemplo:
           # mv translations/openmrs/* openmrs/
           
