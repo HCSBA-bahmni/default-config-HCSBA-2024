@@ -23,13 +23,15 @@ jobs:
       - name: Instalar Transifex Client
         run: |
           pip install transifex-client
-          
+
       - name: Configurar Transifex Client
         run: |
           mkdir -p ~/.transifex
           echo "[https://www.transifex.com]" >> ~/.transifexrc
           echo "hostname = https://www.transifex.com" >> ~/.transifexrc
           echo "token = ${{ secrets.TX_TOKEN }}" >> ~/.transifexrc
+          echo "password = ${{ secrets.TX_TOKEN }}" >> ~/.transifexrc
+          echo "username = api" >> ~/.transifexrc
 
       - name: Descargar Traducciones
         run: |
