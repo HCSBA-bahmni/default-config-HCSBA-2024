@@ -25,9 +25,8 @@ jobs:
       # Paso agregado: Instalar CLI de Transifex y descargar traducciones
       - name: Set up Python and install Transifex Client
         run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-pip
-          pip install transifex-client
+          curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
+
 
       - name: Configurar credenciales de Transifex
         env:
