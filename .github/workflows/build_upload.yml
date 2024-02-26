@@ -27,7 +27,6 @@ jobs:
 
       - name: Descargar Traducciones
         run: |
-          tx init --token $TX_TOKEN
           tx pull -a # Descarga todas las traducciones
 
       - name: Set env.ARTIFACT_VERSION
