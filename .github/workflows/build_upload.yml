@@ -20,6 +20,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Instalar Transifex Client
+        run: |
+          pip install transifex-client
+          
       - name: Configurar Transifex Client
         run: |
           mkdir -p ~/.transifex
@@ -91,4 +95,3 @@ jobs:
           git config user.name "${{ secrets.BAHMNI_USERNAME }}"
           git config user.email "${{ secrets.BAHMNI_EMAIL }}"
           git add .
-
