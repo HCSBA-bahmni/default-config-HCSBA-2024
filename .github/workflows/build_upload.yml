@@ -20,13 +20,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Configurar Transifex CLI
+      - name: Configurar Transifex Client
         run: |
-          pip install transifex-client
-          echo 'TX_TOKEN=${{ secrets.TX_TOKEN }}' >> $GITHUB_ENV
+          mkdir -p ~/.transifex
+          echo "[https://www.transifex.com]" >> ~/.transifexrc
+          echo "hostname = https://www.transifex.com" >> ~/.transifexrc
+          echo "token = ${{ secrets.TX_TOKEN }}" >> ~/.transifexrc
 
       - name: Descargar Traducciones
         run: |
+          tx init --token $TX_TOKEN
           tx pull -a # Descarga todas las traducciones
 
       - name: Set env.ARTIFACT_VERSION
@@ -89,3 +92,4 @@ jobs:
           git config user.name "${{ secrets.BAHMNI_USERNAME }}"
           git config user.email "${{ secrets.BAHMNI_EMAIL }}"
           git add .
+
