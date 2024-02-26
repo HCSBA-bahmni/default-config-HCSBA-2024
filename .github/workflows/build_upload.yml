@@ -26,13 +26,7 @@ jobs:
 
       - name: Configurar .transifexrc
         run: |
-          cat << EOF > ~/.transifexrc
-          [https://www.transifex.com]
-          hostname = https://app.transifex.com
-          password = ${{ secrets.TX_TOKEN }}
-          username = api
-          token = ${{ secrets.TX_TOKEN }}
-          EOF
+         export TX_TOKEN=${{ secrets.TX_TOKEN }}
 
 
       - name: Descargar Traducciones
