@@ -8,7 +8,7 @@ on:
       - '[0-9]+.[0-9]+.[0-9]+'
     paths-ignore:
       - "**.md"
-
+      
 jobs:
   build-publish-docker-helm:
     name: Build & Publish Docker Image & Helm Chart
