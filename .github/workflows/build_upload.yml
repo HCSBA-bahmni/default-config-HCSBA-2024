@@ -21,24 +21,15 @@ jobs:
       - uses: actions/checkout@v2
 
       # Paso agregado: Instalar CLI de Transifex y descargar traducciones
-      - name: Set up Python and install Transifex Client
-        run: |
-          curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
-
-      - name: Configurar credenciales de Transifex
-        env:
-          TX_TOKEN: ${{ secrets.TX_TOKEN }}
-        run: |
-          echo "[https://www.transifex.com]" > $HOME/.transifexrc
-          echo "hostname = https://www.transifex.com" >> $HOME/.transifexrc
-          echo "token = $TX_TOKEN" >> $HOME/.transifexrc
-
-      - name: Download Translations from Transifex
-        run: |
-          tx pull -a
-          # Asegúrate de mover las traducciones a la carpeta correcta aquí, por ejemplo:
-          # mv translations/openmrs/* openmrs/
+     - name: Configurar Transifex CLI
+      run: |
+        pip install transifex-client
+        echo 'TX_TOKEN=${{ secrets.TX_TOKEN }}' >> $GITHUB_ENV
+    
+    - name: Descargar Traducciones
+      run: |
+        tx init --token $TX_TOKEN
+        tx pull -a # Descarga todas las traducciones
 
       - name: Set env.ARTIFACT_VERSION
         run: |
