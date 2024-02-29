@@ -23,9 +23,11 @@ jobs:
       - name: Instalar Cliente de Transifex
         run: |
           curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
-          which tx
-          tx --version
+         
+         
+      - name: Configurar PATH para el cliente de Transifex
+        run: echo "/home/runner/work/default-config-HCSBA-2024/default-config-HCSBA-2024:$PATH" >> $GITHUB_PATH
+
 
       - name: Configurar Acceso a Transifex
         run: |
@@ -33,17 +35,13 @@ jobs:
           echo "[https://www.transifex.com]" > $HOME/.transifexrc
           echo "token = ${{ secrets.TRANSIFEX_API_TOKEN }}" >> $HOME/.transifexrc
 
-      - name: Verificar Instalación de TX
-        run: |
-          $HOME/.local/bin/tx --version
 
       - name: Descargar Traducciones Españolas
         run: |
-          $HOME/.local/bin/tx init --skipsetup
-          $HOME/.local/bin/tx pull -l es  # Asume que 'es' es el código de idioma para español
+         tx init --skipsetup
+         tx pull -l es  # Asume que 'es' es el código de idioma para español
 
-          /home/runner/work/_temp/5709dd21-83c8-492b-b899-3b77e260f4e3.sh: line 1: /home/runner/.local/bin/tx: No such file or directory
-
+       
       - name: Set env.ARTIFACT_VERSION
         run: |
           wget -q https://raw.githubusercontent.com/Bahmni/bahmni-infra-utils/main/setArtifactVersion.sh && chmod +x setArtifactVersion.sh
