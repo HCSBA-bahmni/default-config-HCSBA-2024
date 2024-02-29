@@ -33,11 +33,10 @@ jobs:
 
       - name: Configurar Acceso a Transifex
         run: |
-          mkdir -p $HOME/.transifex
-          echo "[https://www.transifex.com]" > $HOME/.transifexrc
-          echo "token = ${{ secrets.TX_TOKEN }}" >> $HOME/.transifexrc
-          cat $HOME/.transifexrc
-          cat $HOME/.tx/config
+          echo "[https://www.transifex.com]" > /.transifexrc
+          echo "token = ${{ secrets.TX_TOKEN }}" >> /.transifexrc
+          cat .transifexrc
+          cat .tx/config
 
       - name: Descargar Traducciones Españolas
         run: |
