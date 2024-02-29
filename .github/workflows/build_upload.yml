@@ -35,6 +35,7 @@ jobs:
           echo "[https://www.transifex.com]" > $HOME/.transifexrc
           echo "token = ${{ secrets.TX_TOKEN }}" >> $HOME/.transifexrc
           cat $HOME/.transifexrc
+          cat $HOME/.tx/config
 
       - name: Descargar Traducciones Españolas
         run: |
