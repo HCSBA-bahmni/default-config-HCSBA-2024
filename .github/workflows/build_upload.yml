@@ -27,13 +27,18 @@ jobs:
 
       - name: Configurar Acceso a Transifex
         run: |
-          echo "[https://www.transifex.com]" > ~/.transifexrc
-          echo "token = ${{ secrets.TX_TOKEN }}" >> ~/.transifexrc
-  
+          mkdir -p $HOME/.transifex
+          echo "[https://www.transifex.com]" > $HOME/.transifexrc
+          echo "token = ${{ secrets.TRANSIFEX_API_TOKEN }}" >> $HOME/.transifexrc
+
+      - name: Verificar Instalación de TX
+        run: |
+          $HOME/.local/bin/tx --version
+
       - name: Descargar Traducciones Españolas
         run: |
-          tx init --skipsetup
-          tx pull -l es  # Asume que 'es' es el código de idioma para español
+          $HOME/.local/bin/tx init --skipsetup
+          $HOME/.local/bin/tx pull -l es  # Asume que 'es' es el código de idioma para español
 
       - name: Set env.ARTIFACT_VERSION
         run: |
