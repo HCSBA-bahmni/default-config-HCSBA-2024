@@ -97,7 +97,7 @@ jobs:
       - name: Commit and Push Chart Repository
         working-directory: helm-charts/
         run: |
-          git config user.name ${{ secrets.MY_USERNAME }}  # Cambia esto por tu nombre de usuario o el de tu bot
+          git config user.name ${{ secrets.MY_USERNAME }} 
           git config user.email ${{ secrets.MY_EMAIL }}
           git add .
           git commit -m "Release of default-config-${{ env.ARTIFACT_VERSION }}"
