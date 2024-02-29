@@ -34,7 +34,7 @@ jobs:
           mkdir -p $HOME/.transifex
           echo "[https://www.transifex.com]" > $HOME/.transifexrc
           echo "token = TX_TOKEN" >> $HOME/.transifexrc
-
+          cat $HOME/.transifexrc
 
       - name: Descargar Traducciones Españolas
         run: |
