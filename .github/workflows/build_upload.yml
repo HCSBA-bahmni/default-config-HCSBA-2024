@@ -24,6 +24,8 @@ jobs:
         run: |
           curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
           echo "$HOME/.local/bin" >> $GITHUB_PATH
+          which tx
+          tx --version
 
       - name: Configurar Acceso a Transifex
         run: |
@@ -39,6 +41,8 @@ jobs:
         run: |
           $HOME/.local/bin/tx init --skipsetup
           $HOME/.local/bin/tx pull -l es  # Asume que 'es' es el código de idioma para español
+
+          /home/runner/work/_temp/5709dd21-83c8-492b-b899-3b77e260f4e3.sh: line 1: /home/runner/.local/bin/tx: No such file or directory
 
       - name: Set env.ARTIFACT_VERSION
         run: |
