@@ -33,7 +33,7 @@ jobs:
         run: |
           mkdir -p $HOME/.transifex
           echo "[https://www.transifex.com]" > $HOME/.transifexrc
-          echo "token = ${{ secrets.TRANSIFEX_API_TOKEN }}" >> $HOME/.transifexrc
+          echo "token = ${{ secrets.TX_TOKEN }}" >> $HOME/.transifexrc
 
 
       - name: Descargar Traducciones Españolas
