@@ -16,15 +16,17 @@ jobs:
     env:
       HELM_CHART_PATH: package/helm
       TX_TOKEN: ${{ secrets.TX_TOKEN }}
-
+      
     steps:
       - uses: actions/checkout@v2
-
+      
+      - name: Listar archivos en el directorio .tx
+        run: ls -la .tx/
+        
       - name: Instalar Cliente de Transifex
         run: |
           curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
-         
-         
+          
       - name: Configurar PATH para el cliente de Transifex
         run: echo "/home/runner/work/default-config-HCSBA-2024/default-config-HCSBA-2024:$PATH" >> $GITHUB_PATH
 
