@@ -33,14 +33,14 @@ jobs:
 
       - name: Configurar Acceso a Transifex
         run: |
-          echo "[https://www.transifex.com]" > /.transifexrc
-          echo "token = ${{ secrets.TX_TOKEN }}" >> /.transifexrc
+          echo "[https://www.transifex.com]" > ${{ github.workspace }}/.transifexrc
+          echo "token = ${{ secrets.TX_TOKEN }}" >> ${{ github.workspace }}/.transifexrc
           cat .transifexrc
           cat .tx/config
 
       - name: Descargar Traducciones Españolas
         run: |
-         pwd
+         cd   ${{ github.workspace }}/
          tx pull -l es  # Asume que 'es' es el código de idioma para español
 
        
