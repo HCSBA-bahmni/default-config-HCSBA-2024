@@ -38,7 +38,6 @@ jobs:
 
       - name: Descargar Traducciones Españolas
         run: |
-         tx init --skipsetup
          tx pull -l es  # Asume que 'es' es el código de idioma para español
 
        
