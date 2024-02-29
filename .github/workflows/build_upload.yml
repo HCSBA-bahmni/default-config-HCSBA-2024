@@ -40,6 +40,7 @@ jobs:
 
       - name: Descargar Traducciones Españolas
         run: |
+         pwd
          tx pull -l es  # Asume que 'es' es el código de idioma para español
 
        
