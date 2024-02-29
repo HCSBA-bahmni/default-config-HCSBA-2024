@@ -81,7 +81,7 @@ jobs:
       - name: Checkout Charts Repository
         uses: actions/checkout@v2
         with:
-          repository: Bahmni/helm-charts
+          repository: HCSBA-bahmni/helm-charts
           ref: gh-pages
           path: helm-charts
           persist-credentials: false
@@ -91,13 +91,15 @@ jobs:
 
       - name: Helm Index
         working-directory: helm-charts/
-        run: helm repo index --merge index.yaml --url https://bahmni.github.io/helm-charts/  .
+        run: helm repo index --merge index.yaml --url https://HCSBA-bahmni.github.io/helm-charts/  .
+      
 
       - name: Commit and Push Chart Repository
         working-directory: helm-charts/
         run: |
-          git config user.name ${{ secrets.BAHMNI_USERNAME}}
-          git config user.email ${{ secrets.BAHMNI_EMAIL}}
+          git config user.name ${{ secrets.MY_USERNAME }}  # Cambia esto por tu nombre de usuario o el de tu bot
+          git config user.email ${{ secrets.MY_EMAIL }}
           git add .
           git commit -m "Release of default-config-${{ env.ARTIFACT_VERSION }}"
-          git push 'https://${{ secrets.BAHMNI_USERNAME}}:${{ secrets.BAHMNI_PAT}}@github.com/bahmni/helm-charts.git' gh-pages
+          git push 'https://${{ secrets.MY_USERNAME }}:${{ secrets.MY_PAT }}@github.com/HCSBA-bahmni/helm-charts.git' gh-pages
+      
