@@ -38,7 +38,7 @@ jobs:
 
       - name: Descargar Traducciones Españolas
         run: |
-         tx pull -l es --root-config $HOME/.transifex  # Asume que 'es' es el código de idioma para español
+         tx pull -l es  # Asume que 'es' es el código de idioma para español
 
        
       - name: Set env.ARTIFACT_VERSION
