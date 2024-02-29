@@ -20,18 +20,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Instalar Transifex Client
-        run: |
-          pip install transifex-client
+      - name: Instalar Cliente de Transifex
+      run: |
+        curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - name: Configurar .transifexrc
+      - name: Configurar Acceso a Transifex
         run: |
-         export TX_TOKEN=${{ secrets.TX_TOKEN }}
-
-
-      - name: Descargar Traducciones
+          echo "[https://www.transifex.com]" > ~/.transifexrc
+          echo "token = ${{ secrets.TX_TOKEN }}" >> ~/.transifexrc
+  
+      - name: Descargar Traducciones Españolas
         run: |
-          tx pull -a # Descarga todas las traducciones
+          tx init --skipsetup
+          tx pull -l es  # Asume que 'es' es el código de idioma para español
 
       - name: Set env.ARTIFACT_VERSION
         run: |
