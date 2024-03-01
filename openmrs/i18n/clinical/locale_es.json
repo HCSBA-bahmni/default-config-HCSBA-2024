@@ -2,8 +2,8 @@
   "MODULE_LABEL_ACTIVE_KEY": "Activo",
   "MODULE_LABEL_PROGRAMS_KEY": "Programas",
   "MODULE_LABEL_MY_PATIENTS_KEY": "Mis Pacientes",
-  "MODULE_LABEL_ACTIVE_PATIENTS_BY_LOCATION": "PacientesPorUbicacion",
-  "MODULE_LABEL_OPD_1_KEY": "OPD-1",
+  "MODULE_LABEL_ACTIVE_PATIENTS_BY_LOCATION": "Patientes por Ubicación",
+  "MODULE_LABEL_OPD_1_KEY": "Ambulatorio-1",
   "MODULE_LABEL_ALL_KEY": "Todos",
 
   "DASHBOARD_TITLE_LAB_RESULTS_KEY": "Resultados de Laboratorio",
@@ -14,7 +14,7 @@
   "DASHBOARD_TITLE_PROGRAMS_KEY": "Programas",
   "DASHBOARD_TITLE_TREATMENTS_KEY": "Tratamientos",
   "DASHBOARD_TITLE_DISPOSITION_KEY": "Disposición",
-  "DASHBOARD_TITLE_DIAGNOSIS_KEY": "Diagnoses",
+  "DASHBOARD_TITLE_DIAGNOSIS_KEY": "Diagnóstico",
   "DASHBOARD_TITLE_ADMISSION_DETAILS_KEY": "Detalles de admisión",
   "DASHBOARD_TITLE_NUTRITIONAL_VALUES_KEY": "Valores Nutricionales",
   "DASHBOARD_TITLE_SECOND_VITALS_KEY": "Signos Vitales secundarios",
@@ -42,9 +42,9 @@
   "DASHBOARD_TAB_ORDERS_KEY": "Órdenes",
 
   "LAB_INVESTIGATIONS_KEY":"Investigaciones de Laboratorio",
-  "PACS_ORDERS_VISIT_PAGE_KEY": "Visitar página de órdenes PACS",
+  "RADIOLOGY_ORDERS_KEY": "Órdenes de Radiología",
 
-  "DISCHARGE_SUMMARY_DIAGNOSIS_KEY" :"Diagnoses",
+  "DISCHARGE_SUMMARY_DIAGNOSIS_KEY" :"Diagnóstico",
 
   "DISCHARGE_SUMMARY_ADVICE_ON_DISCHARGE_KEY": "Consejos para el alta",
   "DISCHARGE_SUMMARY_AT_ADMISSION_KEY": "En admisión",
@@ -60,7 +60,7 @@
   "BACTERIOLOGY_BOARD_LABEL_KEY":"Bacteriología",
   "CONSULTATION_BOARD_LABEL_KEY":"Consulta",
   "DISPOSITION_BOARD_LABEL_KEY":"Disposición",
-  "DIAGNOSIS_BOARD_LABEL_KEY":"Diagnoses",
+  "DIAGNOSIS_BOARD_LABEL_KEY":"Diagnóstico",
 
   "CLINICAL_ORDER_RADIOLOGY_NEED_PRINT": "Necesita impresora para esta orden",
   "CLINICAL_ORDER_RADIOLOGY_NEED_PRINT_BUTTON": "Necesita impresora",
@@ -88,12 +88,12 @@
   "DASHBOARD_NO_UPCOMING_APPOINTMENTS_KEY": "SIn citas futuras",
   "DASHBOARD_TELECON_KEY": "Teleconsulta",
   "DASHBOARD_JOIN_TELECON_KEY": "Unirse a teleconsulta",
-  "DASHBOARD_TITLE_FORMS2_DISPLAY_EDIT_FORMS2_FORMS": "Mostrar y editar formas (2.0)",
+  "DASHBOARD_TITLE_FORMS2_DISPLAY_EDIT_FORMS2_FORMS": "Mostrar y editar formularios (2.0)",
   "PROGRAM_HIV_PROGRAM": "Programa de VIH",
-  "PROGRAM_TB_PROGRAM": "Programa de TB",
+  "PROGRAM_TB_PROGRAM": "Programa de TBC",
   "PROGRAM_ID_NUMBER": "Número de ID",
   "PROGRAM_TREATMENT_DATE": "Fecha de Tratamiento",
-  "PROGRAM_COMORBIDITES": "Re- Incidencias",
-  "PROGRAM_DOCTORINCHARGE": "Doctor a cargo",
-  "PROGRAM_PATIENT_STAGE": "Estado del Paciente"
+  "PROGRAM_COMORBIDITES": "Comorbilidades",
+  "PROGRAM_DOCTORINCHARGE": "Medico a cargo",
+  "PROGRAM_PATIENT_STAGE": "Etapa del Paciente"
 }
